@@ -3,9 +3,6 @@ Cordinate Transformation and Visualization Documentation
 
 This document describes a 3D reconstruction and visualization process utilizing image and Lidar data. The script reads input images alongside corresponding calibration files, processes Lidar data, including the projection of Lidar point clouds onto the image plane, and visualizes the results.
 
-•	Block Diagram:
- 
-
 •	Setup: 
 
 Place the input image (0000000001.png), calibration files (000001.txt), and Lidar data file (0000000001.bin) in appropriate directories. 
