@@ -1,1 +1,58 @@
+Cordinate Transformation and Visualization Documentation
+•	Overview
+
+This document describes a 3D reconstruction and visualization process utilizing image and Lidar data. The script reads input images alongside corresponding calibration files, processes Lidar data, including the projection of Lidar point clouds onto the image plane, and visualizes the results.
+
+•	Block Diagram:
+ 
+
+•	Setup: 
+
+Place the input image (0000000001.png), calibration files (000001.txt), and Lidar data file (0000000001.bin) in appropriate directories. 
+
+•	View Results: 
+Upon execution, the script generates visualizations, including raw point clouds, utilizing calibration parameters, and projecting Lidar point clouds onto the image plane and detecting the objects.
+
+Overall Algorithm with Object Detection:
+•	Input Data:
+Image: A single grayscale or color image (0000000001.png) captured by a camera.
+Calibration Files: Contains intrinsic and extrinsic camera parameters (000001.txt) required for camera projection and transformation.
+LiDAR Data: Point cloud data (0000000001.bin) collected by a LiDAR sensor.
+
+Processing Steps:
+Read Data (Image & Calibration): 
+1.	Extract calibration parameters from the provided calibration file (0001.txt).
+2.	Read the image data from the provided image file (0000000001.png).
+Object Detection:
+1.	Utilize a pre-trained object detection model (e.g., YOLO, MobileNet) to identify and localize objects within the image.
+2.	Obtain information about the detected objects, including bounding boxes, class labels (e.g., car, person), and confidence scores.
+ 
+Read LiDAR Data & Filter:
+1.	Read the LiDAR data points from the binary file (0000000001.bin).
+2.	Filter out points located behind the image plane, as they are irrelevant for projection.
+
+ 
+Camera Projection:
+1.	Use the calibration parameters to compute a projection matrix.
+2.	Project the filtered LiDAR points onto the image plane using the projection matrix.
+3.	Project only the LiDAR points that fall within the detected object bounding boxes.
+ 
+
+Depth Map Computation:
+1.	Employ the projected LiDAR points to compute a dense depth map for the image using a grid-based approach.
+
+ 
+Visualization:
+1.	Generate visualizations, including:
+2.	Raw Point Cloud: Visualization of the raw LiDAR points before projection.
+3.	Full Depth Map: The complete depth map calculated from the projected points.
+4.	Depth Map with Bounding Boxes: The depth map with detected object bounding boxes overlaid.
+5.	Composite Image with Bounding Boxes and Labels: A combined image displaying the grayscale image, disparity map, and bounding boxes with corresponding class labels (and optionally confidence scores).
+ 
+
+
+Output: 
+The generated visualizations and potentially additional data, such as:
+Object detection information: Bounding boxes, class labels, and confidence scores.
+Depth statistics within bounding boxes (optional): Average depth, minimum/maximum depth, or depth histograms for each detected object. This modified description incorporates object detection throughout the processing steps, allowing for analysis of LiDAR data and depth specifically within the context of the identified objects.
 
